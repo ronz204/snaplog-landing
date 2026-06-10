@@ -1,0 +1,79 @@
+/* ============================================================
+   BUTTONS — .btn block and all modifiers
+   ============================================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    padding: 0.625rem 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    border-radius: var(--r-md);
+    border: 1px solid transparent;
+    transition:
+        opacity var(--t-fast),
+        transform var(--t-fast),
+        background-color var(--t-fast),
+        color var(--t-fast),
+        border-color var(--t-fast);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+/* Primary — filled green */
+.btn--primary {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+.btn--primary:hover  { opacity: 0.9; transform: translateY(-1px); }
+.btn--primary:active { opacity: 0.8; transform: translateY(0); }
+
+/* Ghost — outlined */
+.btn--ghost {
+    background-color: transparent;
+    border-color: var(--color-outline);
+    color: var(--color-text-secondary);
+}
+
+.btn--ghost:hover {
+    background-color: var(--color-surface-variant);
+    color: var(--color-text-primary);
+}
+
+/* Icon — circular, no border */
+.btn--icon {
+    padding: var(--sp-2);
+    border-radius: var(--r-full);
+    color: var(--color-text-secondary);
+}
+
+.btn--icon:hover {
+    background-color: var(--color-surface-variant);
+    color: var(--color-text-primary);
+}
+
+/* Inverse — dark bg on primary-colored section */
+.btn--inverse {
+    background-color: var(--color-on-primary);
+    color: var(--color-primary);
+}
+
+.btn--inverse:hover  { transform: scale(1.03); opacity: 0.95; }
+.btn--inverse:active { transform: scale(0.97); }
+
+/* Size modifier */
+.btn--lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    border-radius: var(--r-lg);
+}
+
+/* Width modifier */
+.btn--full { width: 100%; }

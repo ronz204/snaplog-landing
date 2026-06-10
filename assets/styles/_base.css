@@ -1,0 +1,81 @@
+/* ============================================================
+   BASE — reset, body, shared layout helpers
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color var(--t-slow), color var(--t-slow);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+}
+
+/* ── Shared layout helpers ───────────────────────────────── */
+main {
+    padding-top: var(--header-h);
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--margin-desktop);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--sp-12);
+}
+
+.section-header__title {
+    font-family: var(--font-sans);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2.5rem;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--sp-4);
+}
+
+.section-header__subtitle {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-text-secondary);
+    max-width: 40rem;
+    margin-inline: auto;
+}

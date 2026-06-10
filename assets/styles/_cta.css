@@ -1,0 +1,40 @@
+/* ============================================================
+   CTA — final call-to-action banner, flexbox centered column
+   ============================================================ */
+.cta {
+    padding-block: var(--sp-24);
+}
+
+/* Flexbox: centered column inside primary-color box */
+.cta__box {
+    background-color: var(--color-primary);
+    border-radius: var(--r-2xl);
+    padding: var(--sp-20) var(--sp-24);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cta__title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.5rem;
+    letter-spacing: -0.02em;
+    color: var(--color-on-primary);
+    margin-bottom: var(--sp-6);
+}
+
+.cta__subtitle {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    /* dark mode: primary is bright green → need dark text */
+    color: rgba(0, 57, 21, 0.70);
+    max-width: 36rem;
+    margin-bottom: var(--sp-10);
+}
+
+html.light .cta__subtitle {
+    /* light mode: primary is dark green → need light text */
+    color: rgba(255, 255, 255, 0.85);
+}

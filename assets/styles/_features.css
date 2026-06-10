@@ -1,0 +1,55 @@
+/* ============================================================
+   FEATURES — 6-card grid, CSS Grid 3×2
+   ============================================================ */
+.features {
+    padding-block: var(--sp-24);
+}
+
+/* CSS Grid: 3 columns × 2 rows */
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-6);
+}
+
+.feature-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-outline-faint);
+    border-radius: var(--r-xl);
+    padding: var(--sp-8);
+    transition: border-color var(--t-base), background-color var(--t-slow);
+}
+
+.feature-card:hover        { border-color: var(--color-primary-hover-bdr); }
+.feature-card:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-color: var(--color-primary);
+}
+
+.feature-card__icon {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: var(--sp-6);
+    display: block;
+    /* transition: transform var(--t-base); */
+}
+
+/* .feature-card:hover .feature-card__icon,
+.feature-card:focus-visible .feature-card__icon {
+    transform: scale(1.1);
+} */
+
+.feature-card__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2rem;
+    color: var(--color-text-primary);
+    margin-bottom: var(--sp-3);
+}
+
+.feature-card__desc {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-text-secondary);
+}

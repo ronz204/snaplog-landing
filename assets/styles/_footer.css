@@ -1,0 +1,81 @@
+/* ============================================================
+   FOOTER — CSS Grid 4-column layout
+   ============================================================ */
+.footer {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-outline-faint);
+    padding-block: var(--sp-12);
+    transition: background-color var(--t-slow);
+}
+
+/* CSS Grid: brand (2fr) + 3 nav columns (1fr each) */
+.footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--sp-8);
+}
+
+.footer__brand { max-width: 20rem; }
+
+/* Flexbox: logo + name inline */
+.footer__logo-row {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-4);
+}
+
+.footer__logo {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+}
+
+.footer__name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.footer__tagline {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--sp-6);
+}
+
+.footer__copy {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.footer__col-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--sp-4);
+}
+
+.footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+}
+
+.footer__link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: var(--color-text-secondary);
+    transition: color var(--t-fast);
+}
+
+.footer__link:hover { color: var(--color-primary); }
+.footer__link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: var(--r-sm);
+}

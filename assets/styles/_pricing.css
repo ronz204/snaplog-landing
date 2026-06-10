@@ -1,0 +1,87 @@
+/* ============================================================
+   PRICING — 3-tier cards, CSS Grid 3-column
+   ============================================================ */
+.pricing {
+    padding-block: var(--sp-24);
+    background-color: var(--color-surface);
+    transition: background-color var(--t-slow);
+}
+
+/* CSS Grid: 3 equal columns, vertically centered */
+.pricing__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-8);
+    align-items: center;
+}
+
+.pricing-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-outline-faint);
+    border-radius: var(--r-2xl);
+    padding: var(--sp-8);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color var(--t-base), background-color var(--t-slow);
+}
+
+.pricing-card--featured {
+    border: 2px solid var(--color-primary);
+    transform: scale(1.04);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+}
+
+.pricing-card__badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.25rem 1rem;
+    border-radius: var(--r-full);
+    white-space: nowrap;
+}
+
+.pricing-card__name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--sp-2);
+}
+
+.pricing-card__price     { margin-bottom: var(--sp-8); }
+.pricing-card__amount    { font-size: 2.5rem; font-weight: 700; color: var(--color-text-primary); }
+.pricing-card__period    { font-size: 1rem; color: var(--color-text-secondary); margin-left: var(--sp-1); }
+
+.pricing-card__features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-8);
+    flex-grow: 1;
+}
+
+.pricing-card__feature {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+.pricing-card--featured .pricing-card__feature {
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+.pricing-card__check {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    font-size: 1.25rem;
+}

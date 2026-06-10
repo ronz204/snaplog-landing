@@ -1,0 +1,15 @@
+/* ============================================================
+   SNAPLOG — styles.css  (entry point, imports only)
+   ============================================================ */
+@import url('_variables.css');
+@import url('_base.css');
+@import url('_buttons.css');
+@import url('_nav.css');
+@import url('_hero.css');
+@import url('_steps.css');
+@import url('_features.css');
+@import url('_pricing.css');
+@import url('_testimonials.css');
+@import url('_cta.css');
+@import url('_footer.css');
+@import url('_responsive.css');
