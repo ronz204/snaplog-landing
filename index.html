@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SnapLog | High-Performance Uptime Monitoring</title>
+  <!-- Must run inline in <head> to apply theme class before first paint -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('snaplog-theme') || 'dark';
+      document.documentElement.className = saved;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles/styles.css">
+</head>
+
+<body>
+  <header class="header" role="banner">
+    <nav class="nav" aria-label="Main Navigation">
+      <div class="nav__brand">
+        <img class="nav__logo" src="assets/images/branding.png" alt="SnapLog logo">
+        <span class="nav__name">SnapLog</span>
+      </div>
+      <ul class="nav__links" id="nav-links" role="list">
+        <li class="nav__item"><a class="nav__link" href="#how-it-works">How It Works</a></li>
+        <li class="nav__item"><a class="nav__link" href="#features">Features</a></li>
+        <li class="nav__item"><a class="nav__link" href="#pricing">Pricing</a></li>
+        <li class="nav__item"><a class="nav__link" href="#docs">Docs</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="btn btn--icon" id="theme-toggle" aria-label="Switch to light mode">
+          <span class="material-symbols-outlined theme-icon theme-icon--moon" aria-hidden="true">dark_mode</span>
+          <span class="material-symbols-outlined theme-icon theme-icon--sun" aria-hidden="true">light_mode</span>
+        </button>
+        <button class="btn btn--ghost">Log In</button>
+        <button class="btn btn--primary">Sign Up</button>
+      </div>
+      <button class="btn btn--icon nav__hamburger" id="menu-toggle" aria-label="Open navigation menu"
+        aria-expanded="false" aria-controls="nav-links">
+        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="hero__badge-dot" aria-hidden="true"></span>
+          <span class="hero__badge-text">SYSTEMS OPERATIONAL: 99.99% UPTIME</span>
+        </div>
+        <h1 class="hero__title" id="hero-title">
+          Know before your <em class="hero__title-accent">users</em> do.
+        </h1>
+        <p class="hero__subtitle">
+          Dead-simple uptime monitoring for indie developers and micro-teams.
+          Get notified on Slack and Email within seconds of a failure.
+        </p>
+        <div class="hero__actions">
+          <button class="btn btn--primary btn--lg">Start monitoring free</button>
+          <button class="btn btn--ghost btn--lg">View demo dashboard</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="steps" id="how-it-works" aria-labelledby="steps-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__title" id="steps-title">Set up in seconds</h2>
+          <p class="section-header__subtitle">
+            Focus on building, not monitoring. We've simplified the process down to three effortless steps.
+          </p>
+        </header>
+        <div class="steps__grid">
+          <article class="step">
+            <div class="step__number" aria-hidden="true">1</div>
+            <div class="step__body">
+              <h3 class="step__title">Add URL</h3>
+              <p class="step__desc">
+                Simply input your site or API endpoint. We support HTTP, HTTPS, and TCP checks with custom headers.
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step__number" aria-hidden="true">2</div>
+            <div class="step__body">
+              <h3 class="step__title">Monitor</h3>
+              <p class="step__desc">
+                Our global network pings your service every 60 seconds from 12 edge locations around the world.
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step__number" aria-hidden="true">3</div>
+            <div class="step__body">
+              <h3 class="step__title">Get Alerted</h3>
+              <p class="step__desc">
+                When things go south, receive instant notifications via Slack, Email, Discord, or custom Webhooks.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__title" id="features-title">Engineered for Reliability</h2>
+          <p class="section-header__subtitle">
+            Everything you need to sleep soundly, without the bloat of enterprise monitoring tools.
+          </p>
+        </header>
+        <div class="features__grid">
+          <article class="feature-card" tabindex="0">
+            <span class="material-symbols-outlined feature-card__icon" aria-hidden="true">bolt</span>
+            <h3 class="feature-card__title">Fast Setup</h3>
+            <p class="feature-card__desc">Get your first monitor running in under 30 seconds. No complex config files
+              required.</p>
+          </article>
+          <article class="feature-card" tabindex="0">
+            <span class="material-symbols-outlined feature-card__icon" aria-hidden="true">notifications_active</span>
+            <h3 class="feature-card__title">Instant Alerts</h3>
+            <p class="feature-card__desc">Choose where you get notified. We integrate deeply with the tools your team
+              already uses.</p>
+          </article>
+          <article class="feature-card" tabindex="0">
+            <span class="material-symbols-outlined feature-card__icon" aria-hidden="true">public</span>
+            <h3 class="feature-card__title">Status Pages</h3>
+            <p class="feature-card__desc">Build trust with your users. Share a clean, beautiful status page on your own
+              subdomain.</p>
+          </article>
+          <article class="feature-card" tabindex="0">
+            <span class="material-symbols-outlined feature-card__icon" aria-hidden="true">monitor_heart</span>
+            <h3 class="feature-card__title">50 Monitors Free</h3>
+            <p class="feature-card__desc">Start monitoring up to 50 endpoints at no cost. No credit card required to get
+              started.</p>
+          </article>
+          <article class="feature-card" tabindex="0">
+            <span class="material-symbols-outlined feature-card__icon" aria-hidden="true">language</span>
+            <h3 class="feature-card__title">Global Network</h3>
+            <p class="feature-card__desc">12 edge locations worldwide ensure you know about regional outages before your
+              users do.</p>
+          </article>
+          <article class="feature-card" tabindex="0">
+            <span class="material-symbols-outlined feature-card__icon" aria-hidden="true">history</span>
+            <h3 class="feature-card__title">90-Day History</h3>
+            <p class="feature-card__desc">Full response-time history and uptime reports. Share SLAs with confidence.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__title" id="pricing-title">Simple Pricing</h2>
+          <p class="section-header__subtitle">No credit card required for the free plan. Upgrade or cancel anytime.</p>
+        </header>
+        <div class="pricing__grid">
+
+          <article class="pricing-card">
+            <h3 class="pricing-card__name">Free</h3>
+            <div class="pricing-card__price">
+              <span class="pricing-card__amount">$0</span>
+              <span class="pricing-card__period">/forever</span>
+            </div>
+            <ul class="pricing-card__features" aria-label="Free plan features">
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                50 Monitors
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                5-minute intervals
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                Email alerts
+              </li>
+            </ul>
+            <button class="btn btn--ghost btn--full">Choose Free</button>
+          </article>
+
+          <article class="pricing-card pricing-card--featured">
+            <div class="pricing-card__badge">Best Value</div>
+            <h3 class="pricing-card__name">Pro</h3>
+            <div class="pricing-card__price">
+              <span class="pricing-card__amount">$9</span>
+              <span class="pricing-card__period">/mo</span>
+            </div>
+            <ul class="pricing-card__features" aria-label="Pro plan features">
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                250 Monitors
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                1-minute intervals
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                Status Pages
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                Slack &amp; Discord alerts
+              </li>
+            </ul>
+            <button class="btn btn--primary btn--full">Go Pro</button>
+          </article>
+
+          <article class="pricing-card">
+            <h3 class="pricing-card__name">Team</h3>
+            <div class="pricing-card__price">
+              <span class="pricing-card__amount">$29</span>
+              <span class="pricing-card__period">/mo</span>
+            </div>
+            <ul class="pricing-card__features" aria-label="Team plan features">
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                1000 Monitors
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                30-second intervals
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                Custom Webhooks
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check" aria-hidden="true">check_circle</span>
+                Priority support
+              </li>
+            </ul>
+            <button class="btn btn--ghost btn--full">Start Trial</button>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-header__title" id="testimonials-title">Loved by Developers</h2>
+          <p class="section-header__subtitle">Trusted by indie hackers and small teams worldwide.</p>
+        </header>
+        <div class="testimonials__row">
+          <article class="testimonial">
+            <blockquote class="testimonial__quote">
+              "SnapLog caught my API going down at 3am before any of my paying users even noticed. Worth every penny."
+            </blockquote>
+            <footer class="testimonial__author">
+              <div class="testimonial__avatar" aria-hidden="true">MR</div>
+              <div class="testimonial__info">
+                <p class="testimonial__name">Marco Ruiz</p>
+                <p class="testimonial__role">Indie Hacker, BuildWithMarco</p>
+              </div>
+            </footer>
+          </article>
+          <article class="testimonial">
+            <blockquote class="testimonial__quote">
+              "I was using UptimeRobot before but SnapLog's Slack integration is way cleaner. Setup took literally 20
+              seconds."
+            </blockquote>
+            <footer class="testimonial__author">
+              <div class="testimonial__avatar" aria-hidden="true">SK</div>
+              <div class="testimonial__info">
+                <p class="testimonial__name">Sara Kim</p>
+                <p class="testimonial__role">Freelance Developer</p>
+              </div>
+            </footer>
+          </article>
+          <article class="testimonial">
+            <blockquote class="testimonial__quote">
+              "We manage 12 client sites. SnapLog is the first tool that doesn't require a PhD to configure. Highly
+              recommended."
+            </blockquote>
+            <footer class="testimonial__author">
+              <div class="testimonial__avatar" aria-hidden="true">DP</div>
+              <div class="testimonial__info">
+                <p class="testimonial__name">Diego Pereira</p>
+                <p class="testimonial__role">Co-founder, Micro Agency</p>
+              </div>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta__box">
+          <h2 class="cta__title" id="cta-title">Ready to stop flying blind?</h2>
+          <p class="cta__subtitle">
+            Start monitoring your services in less than a minute. No credit card required.
+          </p>
+          <button class="btn btn--inverse btn--lg">Create your free account</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo-row">
+            <img class="footer__logo" src="assets/images/branding.png" alt="SnapLog logo">
+            <span class="footer__name">SnapLog</span>
+          </div>
+          <p class="footer__tagline">
+            High-performance monitoring for high-velocity teams. Reliable, simple, and affordable.
+          </p>
+          <p class="footer__copy">© 2024 SnapLog Inc. All rights reserved.</p>
+        </div>
+        <nav class="footer__col" aria-label="Product links">
+          <h6 class="footer__col-title">Product</h6>
+          <ul class="footer__list" role="list">
+            <li><a class="footer__link" href="#features">Features</a></li>
+            <li><a class="footer__link" href="#">Status</a></li>
+            <li><a class="footer__link" href="#">API</a></li>
+          </ul>
+        </nav>
+        <nav class="footer__col" aria-label="Support links">
+          <h6 class="footer__col-title">Support</h6>
+          <ul class="footer__list" role="list">
+            <li><a class="footer__link" href="#">Docs</a></li>
+            <li><a class="footer__link" href="#">Twitter</a></li>
+            <li><a class="footer__link" href="#">Discord</a></li>
+          </ul>
+        </nav>
+        <nav class="footer__col" aria-label="Legal links">
+          <h6 class="footer__col-title">Legal</h6>
+          <ul class="footer__list" role="list">
+            <li><a class="footer__link" href="#">Privacy</a></li>
+            <li><a class="footer__link" href="#">Terms</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="javascript/main.js"></script>
+</body>
+
+</html>
