@@ -71,8 +71,12 @@
     .nav__links--open   { display: flex; }
     .nav__hamburger     { display: flex; }
 
-    /* Hide "Log In" on mobile to save space */
-    .nav__actions .btn--ghost { display: none; }
+    /* Push brand to the left so theme + hamburger sit together on the right */
+    .nav__brand         { margin-right: auto; }
+    .nav__actions       { gap: var(--sp-1); }
+
+    /* Hide Log In and Sign Up on mobile — only theme + hamburger remain */
+    .nav__actions .btn:not(.btn--icon) { display: none; }
 
     /* Hero */
     .hero__title { font-size: 2rem; line-height: 2.5rem; }
