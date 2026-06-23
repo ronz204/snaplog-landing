@@ -1,15 +1,926 @@
 /* ============================================================
-   SNAPLOG — styles.css  (entry point, imports only)
+   SNAPLOG — styles.css  (bundled, single file)
    ============================================================ */
-@import url('_variables.css');
-@import url('_base.css');
-@import url('_buttons.css');
-@import url('_nav.css');
-@import url('_hero.css');
-@import url('_steps.css');
-@import url('_features.css');
-@import url('_pricing.css');
-@import url('_testimonials.css');
-@import url('_cta.css');
-@import url('_footer.css');
-@import url('_responsive.css');
+
+/* ============================================================
+   TOKENS — design tokens (colors, spacing, typography, radii)
+   ============================================================ */
+:root {
+    /* Dark theme (default) */
+    --color-bg:              #101415;
+    --color-bg-dim:          #0b0f10;
+    --color-surface:         #191c1e;
+    --color-surface-variant: #323537;
+    --color-text-primary:    #e0e3e5;
+    --color-text-secondary:  #bccbb9;
+    --color-primary:         #4be277;
+    --color-on-primary:      #003915;
+    --color-outline:         #869585;
+
+    /* Semi-transparent helpers (dark) */
+    --color-outline-faint:     rgba(134, 149, 133, 0.20);
+    --color-outline-subtle:    rgba(134, 149, 133, 0.30);
+    --color-primary-glow:      rgba(75, 226, 119, 0.15);
+    --color-primary-badge-bg:  rgba(75, 226, 119, 0.10);
+    --color-primary-badge-bdr: rgba(75, 226, 119, 0.30);
+    --color-primary-hover-bdr: rgba(75, 226, 119, 0.50);
+    --color-primary-step-bg:   rgba(75, 226, 119, 0.05);
+    --color-avatar-bg:         rgba(75, 226, 119, 0.15);
+    --color-text-secondary-80: rgba(188, 203, 185, 0.80);
+
+    /* Typography */
+    --font-sans: 'Hanken Grotesk', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+    /* Spacing (8px grid) */
+    --sp-1:  0.25rem;
+    --sp-2:  0.5rem;
+    --sp-3:  0.75rem;
+    --sp-4:  1rem;
+    --sp-5:  1.25rem;
+    --sp-6:  1.5rem;
+    --sp-8:  2rem;
+    --sp-10: 2.5rem;
+    --sp-12: 3rem;
+    --sp-16: 4rem;
+    --sp-20: 5rem;
+    --sp-24: 6rem;
+
+    /* Layout */
+    --container-max:  1200px;
+    --margin-desktop: 2.5rem;
+    --margin-tablet:  1.5rem;
+    --margin-mobile:  1rem;
+    --header-h:       4rem;
+
+    /* Border radius */
+    --r-sm:   0.125rem;
+    --r-md:   0.25rem;
+    --r-lg:   0.5rem;
+    --r-xl:   0.75rem;
+    --r-2xl:  1.5rem;
+    --r-full: 9999px;
+
+    /* Transitions */
+    --t-fast: 150ms ease;
+    --t-base: 250ms ease;
+    --t-slow: 350ms ease;
+}
+
+html.light {
+    --color-bg:              #f8fafc;
+    --color-bg-dim:          #f1f5f9;
+    --color-surface:         #ffffff;
+    --color-surface-variant: #f1f5f9;
+    --color-text-primary:    #0f172a;
+    --color-text-secondary:  #64748b;
+    --color-primary:         #16a34a;
+    --color-on-primary:      #ffffff;
+    --color-outline:         #cbd5e1;
+
+    --color-outline-faint:     rgba(203, 213, 225, 0.50);
+    --color-outline-subtle:    rgba(203, 213, 225, 0.70);
+    --color-primary-glow:      rgba(22, 163, 74, 0.12);
+    --color-primary-badge-bg:  rgba(22, 163, 74, 0.10);
+    --color-primary-badge-bdr: rgba(22, 163, 74, 0.30);
+    --color-primary-hover-bdr: rgba(22, 163, 74, 0.50);
+    --color-primary-step-bg:   rgba(22, 163, 74, 0.05);
+    --color-avatar-bg:         rgba(22, 163, 74, 0.15);
+    --color-text-secondary-80: rgba(100, 116, 139, 0.80);
+}
+
+/* ============================================================
+   BASE — reset, body, shared layout helpers
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color var(--t-slow), color var(--t-slow);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+}
+
+/* ── Shared layout helpers ───────────────────────────────── */
+main {
+    padding-top: var(--header-h);
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--margin-desktop);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--sp-12);
+}
+
+.section-header__title {
+    font-family: var(--font-sans);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2.5rem;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--sp-4);
+}
+
+.section-header__subtitle {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-text-secondary);
+    max-width: 40rem;
+    margin-inline: auto;
+}
+
+/* ============================================================
+   BUTTONS — .btn block and all modifiers
+   ============================================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    padding: 0.625rem 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    border-radius: var(--r-md);
+    border: 1px solid transparent;
+    transition:
+        opacity var(--t-fast),
+        transform var(--t-fast),
+        background-color var(--t-fast),
+        color var(--t-fast),
+        border-color var(--t-fast);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+/* Primary — filled green */
+.btn--primary {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+.btn--primary:hover  { opacity: 0.9; transform: translateY(-1px); }
+.btn--primary:active { opacity: 0.8; transform: translateY(0); }
+
+/* Ghost — outlined */
+.btn--ghost {
+    background-color: transparent;
+    border-color: var(--color-outline);
+    color: var(--color-text-secondary);
+}
+
+.btn--ghost:hover {
+    background-color: var(--color-surface-variant);
+    color: var(--color-text-primary);
+}
+
+/* Icon — circular, no border */
+.btn--icon {
+    padding: var(--sp-2);
+    border-radius: var(--r-full);
+    color: var(--color-text-secondary);
+}
+
+.btn--icon:hover {
+    background-color: var(--color-surface-variant);
+    color: var(--color-text-primary);
+}
+
+/* Inverse — dark bg on primary-colored section */
+.btn--inverse {
+    background-color: var(--color-on-primary);
+    color: var(--color-primary);
+}
+
+.btn--inverse:hover  { transform: scale(1.03); opacity: 0.95; }
+.btn--inverse:active { transform: scale(0.97); }
+
+/* Size modifier */
+.btn--lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    border-radius: var(--r-lg);
+}
+
+/* Width modifier */
+.btn--full { width: 100%; }
+
+/* ============================================================
+   NAV — fixed header + flexbox navigation bar
+   ============================================================ */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--header-h);
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-outline-faint);
+    transition: background-color var(--t-slow), border-color var(--t-slow);
+}
+
+/* Flexbox: brand | links | actions (space-between) */
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--margin-desktop);
+}
+
+.nav__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    flex-shrink: 0;
+}
+
+.nav__logo {
+    height: 2rem;
+    width: 2rem;
+    object-fit: contain;
+}
+
+.nav__name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Flexbox: horizontal link row */
+.nav__links {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-8);
+}
+
+.nav__link {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    transition: color var(--t-fast);
+}
+
+.nav__link:hover        { color: var(--color-primary); }
+.nav__link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: var(--r-sm);
+}
+
+.nav__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+}
+
+/* Hamburger — hidden on desktop, shown via responsive */
+.nav__hamburger { display: none; }
+
+/* Theme toggle icon visibility
+   Dark mode  → show sun  (click to go light)
+   Light mode → show moon (click to go dark)  */
+.theme-icon--moon { display: none; }
+.theme-icon--sun  { display: block; }
+
+html.light .theme-icon--moon { display: block; }
+html.light .theme-icon--sun  { display: none; }
+
+/* ============================================================
+   HERO — full-bleed section with flexbox centered column
+   ============================================================ */
+.hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sp-24) var(--margin-mobile);
+    overflow: hidden;
+    text-align: center;
+}
+
+.hero__glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at 50% 40%,
+        var(--color-primary-glow),
+        transparent 70%
+    );
+}
+
+/* Flexbox: single centered column */
+.hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 56rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-1) var(--sp-3);
+    margin-bottom: var(--sp-8);
+    border-radius: var(--r-full);
+    background-color: var(--color-primary-badge-bg);
+    border: 1px solid var(--color-primary-badge-bdr);
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.hero__badge-dot {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--r-full);
+    background-color: var(--color-primary);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.35; }
+}
+
+.hero__title {
+    font-family: var(--font-sans);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.5rem;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--sp-6);
+}
+
+.hero__title-accent {
+    color: var(--color-primary);
+    font-style: italic;
+}
+
+.hero__subtitle {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: var(--color-text-secondary);
+    max-width: 40rem;
+    margin-bottom: var(--sp-10);
+}
+
+/* Flexbox: CTA button row */
+.hero__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-4);
+    width: 100%;
+}
+
+/* ============================================================
+   STEPS — "How It Works" section, CSS Grid 3-column
+   ============================================================ */
+.steps {
+    padding-block: var(--sp-24);
+    background-color: var(--color-surface);
+    transition: background-color var(--t-slow);
+}
+
+/* CSS Grid: 3 equal columns */
+.steps__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-12);
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-6);
+    text-align: center;
+}
+
+.step__number {
+    flex-shrink: 0;
+    width: 4rem;
+    height: 4rem;
+    border-radius: var(--r-full);
+    border: 2px solid var(--color-primary);
+    background-color: var(--color-primary-step-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.step__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2rem;
+    color: var(--color-text-primary);
+    margin-bottom: var(--sp-2);
+}
+
+.step__desc {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   FEATURES — 6-card grid, CSS Grid 3×2
+   ============================================================ */
+.features {
+    padding-block: var(--sp-24);
+}
+
+/* CSS Grid: 3 columns × 2 rows */
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-6);
+}
+
+.feature-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-outline-faint);
+    border-radius: var(--r-xl);
+    padding: var(--sp-8);
+    transition: border-color var(--t-base), background-color var(--t-slow);
+}
+
+.feature-card:hover        { border-color: var(--color-primary-hover-bdr); }
+.feature-card:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-color: var(--color-primary);
+}
+
+.feature-card__icon {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: var(--sp-6);
+    display: block;
+}
+
+.feature-card__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2rem;
+    color: var(--color-text-primary);
+    margin-bottom: var(--sp-3);
+}
+
+.feature-card__desc {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   PRICING — 3-tier cards, CSS Grid 3-column
+   ============================================================ */
+.pricing {
+    padding-block: var(--sp-24);
+    background-color: var(--color-surface);
+    transition: background-color var(--t-slow);
+}
+
+/* CSS Grid: 3 equal columns, vertically centered */
+.pricing__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-8);
+    align-items: center;
+}
+
+.pricing-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-outline-faint);
+    border-radius: var(--r-2xl);
+    padding: var(--sp-8);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color var(--t-base), background-color var(--t-slow);
+}
+
+.pricing-card--featured {
+    border: 2px solid var(--color-primary);
+    transform: scale(1.04);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+}
+
+.pricing-card__badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.25rem 1rem;
+    border-radius: var(--r-full);
+    white-space: nowrap;
+}
+
+.pricing-card__name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--sp-2);
+}
+
+.pricing-card__price     { margin-bottom: var(--sp-8); }
+.pricing-card__amount    { font-size: 2.5rem; font-weight: 700; color: var(--color-text-primary); }
+.pricing-card__period    { font-size: 1rem; color: var(--color-text-secondary); margin-left: var(--sp-1); }
+
+.pricing-card__features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-8);
+    flex-grow: 1;
+}
+
+.pricing-card__feature {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+.pricing-card--featured .pricing-card__feature {
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+.pricing-card__check {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    font-size: 1.25rem;
+}
+
+/* ============================================================
+   TESTIMONIALS — 3 cards in a flexbox row
+   ============================================================ */
+.testimonials {
+    padding-block: var(--sp-24);
+}
+
+/* Flexbox: horizontal row, equal-height cards */
+.testimonials__row {
+    display: flex;
+    gap: var(--sp-6);
+    align-items: stretch;
+}
+
+.testimonial {
+    flex: 1;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-outline-faint);
+    border-radius: var(--r-xl);
+    padding: var(--sp-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+    transition: background-color var(--t-slow), border-color var(--t-slow);
+}
+
+.testimonial__quote {
+    font-size: 1rem;
+    line-height: 1.75rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    flex-grow: 1;
+}
+
+/* Flexbox: avatar + author info */
+.testimonial__author {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+}
+
+.testimonial__avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    border-radius: var(--r-full);
+    background-color: var(--color-avatar-bg);
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonial__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.testimonial__role {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+    margin-top: 0.125rem;
+}
+
+/* ============================================================
+   CTA — final call-to-action banner, flexbox centered column
+   ============================================================ */
+.cta {
+    padding-block: var(--sp-24);
+}
+
+/* Flexbox: centered column inside primary-color box */
+.cta__box {
+    background-color: var(--color-primary);
+    border-radius: var(--r-2xl);
+    padding: var(--sp-20) var(--sp-24);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cta__title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.5rem;
+    letter-spacing: -0.02em;
+    color: var(--color-on-primary);
+    margin-bottom: var(--sp-6);
+}
+
+.cta__subtitle {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    /* dark mode: primary is bright green → need dark text */
+    color: rgba(0, 57, 21, 0.70);
+    max-width: 36rem;
+    margin-bottom: var(--sp-10);
+}
+
+html.light .cta__subtitle {
+    /* light mode: primary is dark green → need light text */
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ============================================================
+   FOOTER — CSS Grid 4-column layout
+   ============================================================ */
+.footer {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-outline-faint);
+    padding-block: var(--sp-12);
+    transition: background-color var(--t-slow);
+}
+
+/* CSS Grid: brand (2fr) + 3 nav columns (1fr each) */
+.footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--sp-8);
+}
+
+.footer__brand { max-width: 20rem; }
+
+/* Flexbox: logo + name inline */
+.footer__logo-row {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-4);
+}
+
+.footer__logo {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+}
+
+.footer__name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.footer__tagline {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--sp-6);
+}
+
+.footer__copy {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.footer__col-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--sp-4);
+}
+
+.footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+}
+
+.footer__link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: var(--color-text-secondary);
+    transition: color var(--t-fast);
+}
+
+.footer__link:hover { color: var(--color-primary); }
+.footer__link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: var(--r-sm);
+}
+
+/* ============================================================
+   RESPONSIVE — breakpoints for tablet and mobile
+   ============================================================ */
+
+/* ── Tablet — max-width: 1024px ─────────────────────────── */
+@media (max-width: 1024px) {
+    .container,
+    .nav {
+        padding-inline: var(--margin-tablet);
+    }
+
+    .hero__title,
+    .cta__title {
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+
+    .cta__box {
+        padding: var(--sp-16) var(--sp-12);
+    }
+
+    /* Features: collapse from 3 to 2 columns */
+    .features__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps__grid {
+        gap: var(--sp-8);
+    }
+
+    /* Reduce featured card scale so it fits */
+    .pricing-card--featured {
+        transform: scale(1.02);
+    }
+
+    /* Footer: brand spans full row, nav links in 3 columns */
+    .footer__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer__brand {
+        grid-column: 1 / -1;
+        max-width: 100%;
+    }
+}
+
+/* ── Mobile — max-width: 768px ──────────────────────────── */
+@media (max-width: 768px) {
+    .container,
+    .nav {
+        padding-inline: var(--margin-mobile);
+    }
+
+    /* Nav: links become a dropdown positioned below the fixed header */
+    .nav__links {
+        position: absolute;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--sp-4);
+        background-color: var(--color-bg);
+        border-bottom: 1px solid var(--color-outline-faint);
+        padding: var(--sp-4) var(--margin-mobile);
+        transition: background-color var(--t-slow);
+        z-index: 99;
+    }
+
+    .nav__links--open   { display: flex; }
+    .nav__hamburger     { display: flex; }
+
+    /* Push brand to the left so theme + hamburger sit together on the right */
+    .nav__brand         { margin-right: auto; }
+    .nav__actions       { gap: var(--sp-1); }
+
+    /* Hide Log In and Sign Up on mobile — only theme + hamburger remain */
+    .nav__actions .btn:not(.btn--icon) { display: none; }
+
+    /* Hero */
+    .hero__title { font-size: 2rem; line-height: 2.5rem; }
+
+    .hero__actions              { flex-direction: column; }
+    .hero__actions .btn         { width: 100%; }
+
+    /* Sections: all grids collapse to 1 column */
+    .steps__grid    { grid-template-columns: 1fr; gap: var(--sp-10); }
+    .features__grid { grid-template-columns: 1fr; }
+    .pricing__grid  { grid-template-columns: 1fr; }
+
+    /* Featured card: remove scale, show first */
+    .pricing-card--featured { transform: none; order: -1; }
+
+    /* Testimonials: stack vertically */
+    .testimonials__row { flex-direction: column; }
+
+    /* CTA */
+    .cta__title { font-size: 2rem; line-height: 2.5rem; }
+    .cta__box   { padding: var(--sp-12) var(--sp-6); }
+
+    /* Footer: 2-column layout */
+    .footer__grid  { grid-template-columns: 1fr 1fr; }
+    .footer__brand { grid-column: 1 / -1; }
+
+    /* Section headers */
+    .section-header__title { font-size: 1.5rem; line-height: 2rem; }
+}
